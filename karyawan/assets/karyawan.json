@@ -1,0 +1,32 @@
+[
+    {
+        "nama": "Budi Setiawan",
+        "umur": 30,
+        "alamat": {
+            "jalan": "Jl. Merdeka No. 10",
+            "kota": "Surabaya",
+            "provinsi": "Jawa Timur"
+        },
+        "hobi": ["membaca", "bersepeda"]
+    },
+    {
+        "nama": "Ferdinan Lubis",
+        "umur": 35,
+        "alamat": {
+            "jalan": "Jl. Cipto",
+            "kota": "Jakarta",
+            "provinsi": "DKI Jakarta"
+        },
+        "hobi": ["menulis", "makan"]
+    },
+    {
+        "nama": "Abel Muhammad Zahrian",
+        "umur": 20,
+        "alamat": {
+            "jalan": "Jl. KM 12",
+            "kota": "Palembang",
+            "provinsi": "Sumatra Selatan"
+        },
+        "hobi": ["makan", "tidur"]
+    }
+]
