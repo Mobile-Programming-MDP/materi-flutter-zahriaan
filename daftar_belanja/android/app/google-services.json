@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175954555689",
+    "project_id": "frist-app-b39ce",
+    "storage_bucket": "frist-app-b39ce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175954555689:android:4634546c09e8be7b223d38",
+        "android_client_info": {
+          "package_name": "com.example.daftar_belanja"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjxgH2kdfJ-S9EI6_8Z-lXVy1EcUUp4-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
