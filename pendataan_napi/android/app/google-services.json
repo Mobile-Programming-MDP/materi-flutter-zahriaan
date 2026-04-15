@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "297416734396",
+    "firebase_url": "https://belajaruts-a2021-default-rtdb.firebaseio.com",
+    "project_id": "belajaruts-a2021",
+    "storage_bucket": "belajaruts-a2021.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297416734396:android:f2161b5de30633b836c2b9",
+        "android_client_info": {
+          "package_name": "com.example.pendataan_napi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyihAlDslEqIm0A9Ie1nNgVR_5FFyIkpE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
