@@ -1,4 +1,39 @@
-Buka website "Firebase" lalu pilih "Create a new Firebase project",
+<!-- <!
+COMMENT FIREBASE Jalankan diCMD
+firebase -V (Cek versi firebase)
+
+node -v (Cek node.js kalau belum ada dowload dulu)
+
+1. Comment untuk menginstall firebase secara global
+-- npm install -g firebase-tools
+
+2. Comment login firebase
+-- firebase login
+
+3. Comment untuk melihat project firebase
+-- firebase projects:list
+
+4. Comment membuat project baru firebase
+-- firebase projects:create
+
+5. Comment logout firebase account
+-- firebase logout
+
+
+COMNET FLUTTERFIRE Jalankan diTERMINAL VSCODE
+
+Comment install flutterfire secara global
+-- dart pub global activate flutterfire_cli
+
+2. Comment untuk menghubungkan project dengan project firebase
+-- flutterfire configure
+
+3. Comment download dependency yang di butuhkan
+-- flutter pub add firebase_core
+
+--flutter pub add firebase_database
+-----------------------------------------------------------------------
+-- Buka website "Firebase" lalu pilih "Create a new Firebase project",
 setelah itu buat databse sesuai ketentuan soal contoh : "belajaruts".
 
 lalu pilih firebase yang sudah dibuat dan buat "Realtime Database"
@@ -162,4 +197,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
+} --> -->
