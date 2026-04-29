@@ -10,8 +10,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final _emailController = TextEditingController();
+  //1. Tambahkan name controller
   final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
@@ -24,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           children: [
             const SizedBox(height: 32.0),
+            //2. Tambahkan TextField Display
             TextField(
               controller: _nameController,
               decoration: const InputDecoration(
@@ -81,12 +83,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     } else {
       try {
-        UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
-        );
-        await user.user?.updateDisplayName(_nameController.text);
-        
+        //3. Buat variable userCredential dan set DisplayName
+        UserCredential userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: _emailController.text,
+              password: _passwordController.text,
+            );
+        userCredential.user?.updateDisplayName(_nameController.text);
+
         if (mounted) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const SignInScreen()),

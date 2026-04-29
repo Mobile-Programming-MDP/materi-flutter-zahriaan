@@ -1,4 +1,4 @@
-implemntasi Firebase firestore pad aplikasi cepu
+implemntasi Firebase firestore pad aplikasi cepu_app
 1. install dependnsi : cloud_firestore, image_picker, geolocator, url_launcher
 2. Buat model post.dart di folder models, dgn property:
 id, image, description, category, latitude, logitude, user_id, user_fullname

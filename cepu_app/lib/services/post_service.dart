@@ -22,7 +22,7 @@ class PostService {
     await _postsCollection.add(newPost);
   }
 
-  static Future<void> updatePost(Post post) async {
+  static Future<void> updatPost(Post post) async {
     Map<String, dynamic> updatedPost = {
       'image': post.image,
       'description': post.description,
@@ -42,7 +42,7 @@ class PostService {
     await _postsCollection.doc(post.id).delete();
   }
 
-  static Future<QuerySnapshot> retrievePosts() {
+  static Future<QuerySnapshot> retrievePost() {
     return _postsCollection.get();
   }
 
@@ -55,14 +55,14 @@ class PostService {
           image: data['image'],
           description: data['description'],
           category: data['category'],
-          latitude: data['latitude'],
-          longitude: data['longitude'],
           createdAt: data['created_at'] != null
               ? data['created_at'] as Timestamp
               : null,
           updatedAt: data['updated_at'] != null
               ? data['updated_at'] as Timestamp
               : null,
+          latitude: data['latitude'],
+          longitude: data['longitude'],
           userId: data['user_id'],
           userFullName: data['user_full_name'],
         );

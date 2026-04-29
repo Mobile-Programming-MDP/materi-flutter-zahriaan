@@ -5,10 +5,10 @@ class Post {
   String? image;
   String? description;
   String? category;
-  double? latitude;
-  double? longitude;
   Timestamp? createdAt;
   Timestamp? updatedAt;
+  String? latitude;
+  String? longitude;
   String? userId;
   String? userFullName;
 
@@ -17,37 +17,27 @@ class Post {
     this.image,
     this.description,
     this.category,
-    this.latitude,
-    this.longitude,
     this.createdAt,
     this.updatedAt,
+    this.latitude,
+    this.longitude,
     this.userId,
     this.userFullName,
   });
 
   factory Post.fromDocument(DocumentSnapshot doc) {
-    final data = doc.data() as Map<String, dynamic>;
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
     return Post(
       id: doc.id,
-      image: data['image'] as String?,
-      description: data['description'] as String?,
-      category: data['category'] as String?,
-      latitude: data['latitude'] != null
-          ? (data['latitude'] is num
-              ? (data['latitude'] as num).toDouble()
-              : double.tryParse(data['latitude'].toString()))
-          : null,
-      longitude: data['longitude'] != null
-          ? (data['longitude'] is num
-              ? (data['longitude'] as num).toDouble()
-              : double.tryParse(data['longitude'].toString()))
-          : null,
-      createdAt:
-          data['created_at'] is Timestamp ? data['created_at'] as Timestamp : null,
-      updatedAt:
-          data['updated_at'] is Timestamp ? data['updated_at'] as Timestamp : null,
-      userId: data['user_id'] as String?,
-      userFullName: data['user_full_name'] as String?,
+      image: doc['image'],
+      description: data['description'],
+      category: data['category'],
+      createdAt: data['created_at'] as Timestamp,
+      updatedAt: data['updated_at'] as Timestamp,
+      latitude: data['latitude'],
+      longitude: data['longitude'],
+      userId: data['user_id'],
+      userFullName: data['user_full_name'],
     );
   }
 
@@ -55,7 +45,7 @@ class Post {
     return {
       'image': image,
       'description': description,
-      'category': category,
+      'category': category, 
       'latitude': latitude,
       'longitude': longitude,
       'created_at': createdAt,
