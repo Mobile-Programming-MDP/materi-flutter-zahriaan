@@ -1,3 +1,4 @@
+import 'package:cepu_app/models/post.dart';
 import 'package:cepu_app/screens/add_post_screen.dart';
 import 'package:cepu_app/screens/sign_in_screen.dart';
 import 'package:cepu_app/services/post_service.dart';
@@ -13,6 +14,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? selectedCategory;
+  List<String> get categories {
+    return [
+      'Jalan Rusak',
+      'Lampu Jalan Mati',
+      'Lawan Arah',
+      'Merokok di Jalan',
+      'Tidak Pakai Helm'
+    ];
+  }
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
     if (!mounted) return;
@@ -29,6 +40,68 @@ class _HomeScreenState extends State<HomeScreen> {
     return 'https://ui-avatars.com/api/?name=$formattedName&color=FFFFFF&background=000000';
   }
 
+  void _showCategoryFilter() async {
+    final result = await showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: ListView(
+              padding: const EdgeInsets.only(bottom: 24),
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.clear),
+                  title: Text("All Category"),
+                  onTap:
+                      () => Navigator.pop(
+                        context,
+                        null,
+                      ), // Null untuk memilih semua kategori
+                ),
+                const Divider(),
+                ...categories.map(
+                  (category) => ListTile(
+                    title: Text(category),
+                    trailing:
+                        selectedCategory == category
+                            ? Icon(
+                              Icons.check,
+                              color: Theme.of(context).colorScheme.primary,
+                            )
+                            : null,
+                    onTap:
+                        () => Navigator.pop(
+                          context,
+                          category,
+                        ), // Kategori yang dipilih
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedCategory =
+            result; // Set kategori yang dipilih atau null untuk Semua Kategori
+      });
+    } else {
+      // Jika result adalah null, berarti memilih Semua Kategori
+      setState(() {
+        selectedCategory =
+            null; // Reset ke null untuk menampilkan semua kategori
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentUserId = FirebaseAuth.instance.currentUser?.uid;
@@ -36,6 +109,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text("Home Screen"),
         actions: [
+          IconButton(
+            onPressed: _showCategoryFilter,
+            icon: const Icon(Icons.filter_list),
+            tooltip: "Filter",
+          ),
           IconButton(
             onPressed: () {
               signOut();
@@ -64,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Divider(),
           Expanded(
             child: StreamBuilder(
-              stream: PostService.getPostList(),
+              stream: PostService.getPostListByCategory(selectedCategory),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -73,6 +151,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 }
                 final posts = snapshot.data ?? [];
+                // final posts =
+                // snapshot.data!.docs.where((doc) {
+                //   final data = doc.data();
+                //   final category = data['category'] ?? 'Lainnya';
+                //   return selectedCategory == null ||
+                //       selectedCategory == category;
+                // }).toList();
                 if (posts.isEmpty) {
                   return const Center(child: Text('No posts yet.'));
                 }
